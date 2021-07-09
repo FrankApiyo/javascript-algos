@@ -88,4 +88,32 @@ describe('HashTable', () => {
         expect(hashTable.has('b')).toBe(true);
         expect(hashTable.has('x')).toBe(false);
     });
+
+    it('should get all the values', () => {
+        const hashTable = new HashTable(3);
+
+        hashTable.set('a', 'alpha');
+        hashTable.set('b', 'beta');
+        hashTable.set('c', 'gamma');
+
+        expect(hashTable.getValues()).toEqual(['gamma', 'alpha', 'beta']);
+    });
+
+    it('should get all the values from empty hash table', () => {
+        const hashTable = new HashTable();
+        expect(hashTable.getValues()).toEqual([]);
+    });
+
+    it('should get all the vvalues in case of has collision', () => {
+        const hashTable = new HashTable(3);
+
+        // Keys `ab` and `ba` in current implementation shuould result in one hash (one bucket).
+        // We need to make sure that several items from one bucket will be serialized.
+        hashTable.set('ab', 'one');
+        hashTable.set('ba', 'two');
+
+        hashTable.set('ac', 'three');
+
+        expect(hashTable.getValues()).toEqual(['one', 'two', 'three']);
+    });
 });
