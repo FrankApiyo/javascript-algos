@@ -62,12 +62,12 @@ export default class BinarySearchTreeNode extends BinaryTreeNode {
             return this;
         }
 
-        if (this.nodeValueComparator.lessThan(value, this.value)) {
+        if (this.nodeValueComparator.lessThan(value, this.value) && this.left) {
             // Check the left nodes
             return this.left.find(value);
         }
 
-        if (this.nodeValueComparator.greaterThan(value, this.value)) {
+        if (this.nodeValueComparator.greaterThan(value, this.value) && this.right) {
             // Check the right nodes
             return this.right.find(value);
         }
@@ -122,7 +122,7 @@ export default class BinarySearchTreeNode extends BinaryTreeNode {
             // node has only one child.
             // make the child to be a direct child of current node's parent
             /** @var BinarySearchTreeNode */
-            const childNode = nodetoRemove.left || nodeToRemove.right;
+            const childNode = nodeToRemove.left || nodeToRemove.right;
 
             if (parent) {
                 parent.replaceChild(nodeToRemove, childNode);
