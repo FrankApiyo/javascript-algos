@@ -37,7 +37,7 @@ export default class BinaryTreeNode {
             return 0;
         }
 
-        this.right.height + 1;
+        return this.right.height + 1;
     }
 
     /**
