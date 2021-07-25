@@ -123,7 +123,7 @@ export default class GraphVertex {
      * @return {GraphVertex}
      */
     deleteAllEdges() {
-        this.edges().forEach((edge) => this.deleteEdge(edge));
+        this.getEdges().forEach((edge) => this.deleteEdge(edge));
 
         return this;
     }
